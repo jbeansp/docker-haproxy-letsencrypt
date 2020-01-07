@@ -1,4 +1,4 @@
-FROM haproxy:latest
+FROM haproxy:alpine
 #FROM haproxy:1.7-alpine
 LABEL Jon Proton <jon@opscode.space>
 

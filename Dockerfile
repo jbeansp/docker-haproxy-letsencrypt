@@ -1,5 +1,5 @@
 FROM haproxy:1.7-alpine
-MAINTAINER Tecnativa <info@tecnativa.com>
+MAINTAINER Jon Proton <jon@opscode.space>
 
 ENTRYPOINT ["/prepare-entrypoint.sh"]
 CMD haproxy -- /etc/haproxy/*.cfg
@@ -44,7 +44,8 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         musl-dev \
         libffi-dev \
-    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
+#    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
+    && pip install --no-cache-dir certbot \
     && apk del .build-deps
 
 # Cron

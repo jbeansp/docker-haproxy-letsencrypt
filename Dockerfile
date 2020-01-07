@@ -64,6 +64,7 @@ RUN mkdir -p /var/lib/haproxy && touch /var/lib/haproxy/server-state
 COPY conf/* /etc/haproxy/
 COPY prepare-entrypoint.sh /
 COPY bin/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*sh && chmod +x /prepare-entrypoint.sh
 
 VOLUME /var/spool/cron/cronstamps /etc/letsencrypt
 

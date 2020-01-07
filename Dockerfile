@@ -1,5 +1,6 @@
-FROM haproxy:1.7-alpine
-MAINTAINER Jon Proton <jon@opscode.space>
+FROM haproxy:latest
+#FROM haproxy:1.7-alpine
+LABEL Jon Proton <jon@opscode.space>
 
 ENTRYPOINT ["/prepare-entrypoint.sh"]
 CMD haproxy -- /etc/haproxy/*.cfg
@@ -50,7 +51,7 @@ RUN apk add --no-cache --virtual .build-deps \
         musl-dev \
         libffi-dev \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
-    && pip install --no-cache-dir certbot \
+    && /usr/bin/pip3 install --no-cache-dir certbot \
     && apk del .build-deps
 
 # Cron

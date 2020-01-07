@@ -27,18 +27,23 @@ ENV PORT=80 \
 
 # Certbot (officially supported Let's Encrypt client)
 # SEE https://github.com/certbot/certbot/pull/4032
-COPY cli.ini certbot.txt /usr/src/
+COPY cli.ini /usr/src/
+
+# to update deps, see cerbot Dockerfile
+# https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk add --no-cache --virtual .certbot-deps \
-        py2-pip \
+        py3-pip \
         dialog \
         augeas-libs \
         libffi \
-        libssl1.0 \
+        libssl1.1 \
+        openssl \
         wget \
         ca-certificates \
         binutils
 RUN apk add --no-cache --virtual .build-deps \
         python-dev \
+        python3-dev \
         gcc \
         linux-headers \
         openssl-dev \

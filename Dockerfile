@@ -71,8 +71,8 @@ VOLUME /var/spool/cron/cronstamps /etc/letsencrypt
 # Metadata
 ARG VCS_REF
 ARG BUILD_DATE
-LABEL org.label-schema.schema-version="1.0" \
-      org.label-schema.vendor=Tecnativa \
-      org.label-schema.build-date="$BUILD_DATE" \
-      org.label-schema.vcs-ref="$VCS_REF" \
-      org.label-schema.vcs-url="https://github.com/Tecnativa/docker-haproxy-letsencrypt"
+# LABEL org.label-schema.schema-version="1.0" \
+#       org.label-schema.vendor=Tecnativa \
+#       org.label-schema.build-date="$BUILD_DATE" \
+#       org.label-schema.vcs-ref="$VCS_REF" \
+#       org.label-schema.vcs-url="https://github.com/Tecnativa/docker-haproxy-letsencrypt"

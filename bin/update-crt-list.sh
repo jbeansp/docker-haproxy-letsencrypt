@@ -8,7 +8,7 @@ echo Updating $txt
 touch $txt
 mkdir -p /etc/letsencrypt/live
 cd /etc/letsencrypt/live
-for domain in "$(ls -d */)"; do
+for domain in "$(ls -d */ 2>/dev/null)"; do
     if [ "$domain" = "README" ]; then continue; fi
     cd "$domain"
     if [ -f fullchain.pem -a -f privkey.pem ]; then

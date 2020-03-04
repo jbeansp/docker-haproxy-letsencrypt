@@ -11,6 +11,7 @@ services:
             STAGING: "true"
             # XXX: Use "true" when cert fetching should fail (i.e. in dev env)
             CONTINUE_ON_CERTONLY_FAILURE: "false"
+            RSA_KEY_SIZE: 4096
         links:
             - www
         ports:

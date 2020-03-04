@@ -9,4 +9,5 @@ update-crt-list.sh
 echo Activating cron daemon
 crond
 echo Executing: $@
+# docker-entrypoint.sh comes from the haproxy base image
 exec /docker-entrypoint.sh "$@"

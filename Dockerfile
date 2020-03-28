@@ -6,8 +6,7 @@ ENTRYPOINT ["/prepare-entrypoint.sh"]
 CMD haproxy -- /etc/haproxy/*.cfg
 EXPOSE 80 443
 
-# The port listening in `www` container
-ENV PORT=80 \
+ENV \
     MODE=NORMAL \
     # Odoo mode special variables
     ODOO_LONGPOLLING_PORT=8072 \
@@ -22,7 +21,7 @@ ENV PORT=80 \
     DOMAINS=example.com,example.org \
     RSA_KEY_SIZE=4096 \
     # Command to fetch certs at container boot
-    CERTONLY="certbot certonly --debug --http-01-port 80" \
+    CERTONLY="certbot certonly --debug --http-01-port 90" \
     # Command to monthly renew certs
     RENEW="certbot certonly --debug"
 

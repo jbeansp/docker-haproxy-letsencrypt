@@ -22,10 +22,9 @@ ENV \
     RSA_KEY_SIZE=4096 \
     # Command to fetch certs at container boot.  We use port 80 here because haproxy isn't running yet.
     # for renew, we use port 90 for certbot, because haproxy is bound to port 80, and redirects to port 90
-    # port 90 is set in cli.ini
     CERTONLY="certbot certonly --debug --http-01-port 80" \
     # Command to monthly renew certs
-    RENEW="certbot certonly --debug"
+    RENEW="certbot certonly --debug  --http-01-port 90"
 
 # Certbot (officially supported Let's Encrypt client)
 # SEE https://github.com/certbot/certbot/pull/4032

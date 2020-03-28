@@ -22,9 +22,9 @@ ENV PORT=80 \
     DOMAINS=example.com,example.org \
     RSA_KEY_SIZE=4096 \
     # Command to fetch certs at container boot
-    CERTONLY="certbot certonly --http-01-port 80" \
+    CERTONLY="certbot certonly --debug --http-01-port 80" \
     # Command to monthly renew certs
-    RENEW="certbot certonly"
+    RENEW="certbot certonly --debug"
 
 # Certbot (officially supported Let's Encrypt client)
 # SEE https://github.com/certbot/certbot/pull/4032

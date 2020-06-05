@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -x
 changed=no
 list=
 txt=/etc/letsencrypt/crt-list.txt

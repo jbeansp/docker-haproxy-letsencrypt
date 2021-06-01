@@ -45,6 +45,8 @@ RUN apk add --no-cache --virtual .certbot-deps \
 RUN apk add --no-cache --virtual \
         python-dev \
         python3-dev \
+        py-pip \
+        py3-pip \
         && pip install --upgrade pip
 RUN apk add --no-cache --virtual .build-deps \
         #python-dev \

@@ -61,12 +61,13 @@ RUN apk add --no-cache --virtual .certbot-deps \
 #         py-pip \
 #         py3-pip \
 #         && pip install --upgrade pip
-RUN apk add --no-cache --virtual .build-deps \
+RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
+    && apk add --no-cache --virtual .build-deps \
         python-dev \
         python3-dev \
-        cargo \
-        rust \
-        py3-cryptography \
+        #cargo \
+        #rust \
+        #py3-cryptography \
         gcc \
         linux-headers \
         openssl-dev \

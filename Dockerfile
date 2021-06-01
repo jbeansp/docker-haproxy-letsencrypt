@@ -66,6 +66,7 @@ RUN apk add --no-cache --virtual .build-deps \
         python3-dev \
         cargo \
         rust \
+        py3-cryptography \
         gcc \
         linux-headers \
         openssl-dev \

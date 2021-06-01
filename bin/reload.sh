@@ -7,6 +7,8 @@ echo show servers state | socat /var/lib/haproxy/stats - > /var/lib/haproxy/serv
 # killall -s HUP haproxy-systemd-wrapper || true
 
 # some documentation says HUP
+# tested HUP manually and it looks like it works
 killall -s HUP haproxy || true
 # the latest /docker-entrypoint comments say to use USR2
-killall -s USR2 haproxy || true
+#killall -s USR2 haproxy || true
+#haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)

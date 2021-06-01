@@ -42,9 +42,13 @@ RUN apk add --no-cache --virtual .certbot-deps \
         wget \
         ca-certificates \
         binutils
-RUN apk add --no-cache --virtual .build-deps \
+RUN apk add --no-cache --virtual \
         python-dev \
         python3-dev \
+        && pip install --upgrade pip
+RUN apk add --no-cache --virtual .build-deps \
+        #python-dev \
+        #python3-dev \
         gcc \
         linux-headers \
         openssl-dev \

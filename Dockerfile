@@ -64,6 +64,8 @@ RUN apk add --no-cache --virtual .certbot-deps \
 RUN apk add --no-cache --virtual .build-deps \
         python-dev \
         python3-dev \
+        cargo \
+        rust \
         gcc \
         linux-headers \
         openssl-dev \

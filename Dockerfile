@@ -30,11 +30,21 @@ ENV \
 # SEE https://github.com/certbot/certbot/pull/4032
 COPY cli.ini /usr/src/
 
+RUN apk add --no-cache --virtual \
+        py3-pip \
+        py-pip \
+        && pip install --upgrade pip \
+        && pip3 install --upgrade pip \
+        && pip3 install --no-cache-dir setuptools_rust
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk add --no-cache --virtual .certbot-deps \
-        py3-pip \
-        py-pip \
+        # py3-pip \
+        # py-pip \
+        # && pip install --upgrade pip \
+        # && pip3 install --upgrade pip \
+        # && pip3 install --no-cache-dir setuptools_rust \
+        # && 
         dialog \
         augeas-libs \
         libffi \
@@ -42,9 +52,7 @@ RUN apk add --no-cache --virtual .certbot-deps \
         openssl \
         wget \
         ca-certificates \
-        binutils \
-        && pip install --upgrade pip \
-        && pip3 install --upgrade pip
+        binutils 
 # RUN apk add --no-cache --virtual \
 #         python-dev \
 #         python3-dev \

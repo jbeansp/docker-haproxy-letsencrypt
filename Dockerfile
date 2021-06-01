@@ -30,7 +30,7 @@ ENV \
 # SEE https://github.com/certbot/certbot/pull/4032
 COPY cli.ini /usr/src/
 
-RUN apk add --no-cache --virtual \
+RUN apk add --no-cache --virtual .certbot-deps \
         py3-pip \
         #py-pip \
         #&& pip install --upgrade pip \

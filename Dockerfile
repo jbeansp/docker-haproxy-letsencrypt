@@ -71,7 +71,7 @@ RUN apk add --no-cache --virtual .build-deps \
         libffi-dev \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
     #&& curl https://sh.rustup.rs -sSf | sh \
-    && /usr/bin/pip3 install --no-cache-dir --update pip \
+    && /usr/bin/pip3 install --no-cache-dir --upgrade pip \
     && /usr/bin/pip3 install --no-cache-dir certbot \
     && apk del .build-deps
 

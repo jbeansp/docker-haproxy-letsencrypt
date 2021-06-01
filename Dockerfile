@@ -32,10 +32,12 @@ COPY cli.ini /usr/src/
 
 RUN apk add --no-cache --virtual \
         py3-pip \
-        py-pip \
-        && pip install --upgrade pip \
+        #py-pip \
+        #&& pip install --upgrade pip \
         #&& pip3 install --upgrade pip \
-        && pip install --no-cache-dir setuptools_rust
+        && pip install --no-cache-dir setuptools_rust \
+        && if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi \
+        && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk add --no-cache --virtual .certbot-deps \

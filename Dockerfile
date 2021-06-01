@@ -34,6 +34,7 @@ COPY cli.ini /usr/src/
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk add --no-cache --virtual .certbot-deps \
         py3-pip \
+        py-pip \
         dialog \
         augeas-libs \
         libffi \
@@ -41,16 +42,18 @@ RUN apk add --no-cache --virtual .certbot-deps \
         openssl \
         wget \
         ca-certificates \
-        binutils
-RUN apk add --no-cache --virtual \
+        binutils \
+        && pip install --upgrade pip \
+        && pip3 install --upgrade pip
+# RUN apk add --no-cache --virtual \
+#         python-dev \
+#         python3-dev \
+#         py-pip \
+#         py3-pip \
+#         && pip install --upgrade pip
+RUN apk add --no-cache --virtual .build-deps \
         python-dev \
         python3-dev \
-        py-pip \
-        py3-pip \
-        && pip install --upgrade pip
-RUN apk add --no-cache --virtual .build-deps \
-        #python-dev \
-        #python3-dev \
         gcc \
         linux-headers \
         openssl-dev \

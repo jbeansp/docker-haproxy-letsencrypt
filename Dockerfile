@@ -61,6 +61,9 @@ RUN apk add --no-cache --virtual .certbot-deps \
 #         py-pip \
 #         py3-pip \
 #         && pip install --upgrade pip
+
+# if I don't have CRYPTOGRAPHY_DONT_BUILD_RUST=1, certbot installation will fail
+# because pip doesn't have rust. It might be okay to take this out later
 RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
     && apk add --no-cache --virtual .build-deps \
         python-dev \

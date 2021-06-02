@@ -3,7 +3,7 @@ FROM haproxy:alpine
 LABEL Jon Proton <jon@opscode.space>
 
 ENTRYPOINT ["/prepare-entrypoint.sh"]
-CMD haproxy -- /etc/haproxy/*.cfg -p /var/run/haproxy.pid
+CMD haproxy -p /var/run/haproxy.pid -- /etc/haproxy/*.cfg
 EXPOSE 80 443
 
 ENV \

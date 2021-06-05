@@ -44,7 +44,8 @@ USER root
 #         ##&& pip install --no-cache-dir setuptools_rust
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
-RUN apk update && add --no-cache --virtual .certbot-deps \
+RUN apk update \
+    && apk add --no-cache --virtual .certbot-deps \
         # py3-pip \
         # py-pip \
         # && pip install --upgrade pip \

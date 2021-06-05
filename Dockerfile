@@ -82,13 +82,21 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         openssl-dev \
         musl-dev \
         libffi-dev \
+        python3 \
+        python3-venv \
+        libaugeas0 \
         py3-pip \
         && which pip3 \
+        && apk del certbot \
+        && python3 -m venv /opt/certbot/ \
+        && /opt/certbot/bin/pip install --upgrade pip \
+        && /opt/certbot/bin/pip install certbot \
+        && ln -sf /opt/certbot/bin/certbot /usr/bin/certbot \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
     #&& curl https://sh.rustup.rs -sSf | sh \
-    && /usr/bin/pip3 install --no-cache-dir --upgrade pip \
-    && /usr/bin/pip3 install --no-cache-dir requests \
-    && /usr/bin/pip3 install --no-cache-dir certbot \
+    #&& /usr/bin/pip3 install --no-cache-dir --upgrade pip \
+    #&& /usr/bin/pip3 install --no-cache-dir requests \
+    #&& /usr/bin/pip3 install --no-cache-dir certbot \
     && apk del .build-deps
 
 # Cron

@@ -32,19 +32,19 @@ COPY cli.ini /usr/src/
 
 USER root
 
-RUN apk update \
-    && apk add --no-cache --virtual .certbot-deps \
-        py3-pip \
-        #py-pip \
-        #&& pip install --upgrade pip \
-        #&& pip3 install --upgrade pip \
-        && which pip3 \
-        && if [ ! -e /usr/bin/pip ]; then ln -s /usr/bin/pip3 /usr/bin/pip ; fi \
-        && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi 
-        ##&& pip install --no-cache-dir setuptools_rust
+# RUN apk update \
+#     && apk add --no-cache --virtual .certbot-deps \
+#         py3-pip \
+#         #py-pip \
+#         #&& pip install --upgrade pip \
+#         #&& pip3 install --upgrade pip \
+#         && which pip3 \
+#         && if [ ! -e /usr/bin/pip ]; then ln -s /usr/bin/pip3 /usr/bin/pip ; fi \
+#         && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi 
+#         ##&& pip install --no-cache-dir setuptools_rust
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
-RUN apk add --no-cache --virtual .certbot-deps \
+RUN apk update && add --no-cache --virtual .certbot-deps \
         # py3-pip \
         # py-pip \
         # && pip install --upgrade pip \
@@ -69,6 +69,7 @@ RUN apk add --no-cache --virtual .certbot-deps \
 # if I don't have CRYPTOGRAPHY_DONT_BUILD_RUST=1, certbot installation will fail
 # because pip doesn't have rust. It might be okay to take this out later
 RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
+    && apk update \
     && apk add --no-cache --virtual .build-deps \
         #python-dev \
         python3-dev \
@@ -80,10 +81,12 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         openssl-dev \
         musl-dev \
         libffi-dev \
+        py3-pip \
+        && which pip3 \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
     #&& curl https://sh.rustup.rs -sSf | sh \
-    && /usr/bin/pip install --no-cache-dir --upgrade pip \
-    && /usr/bin/pip install --no-cache-dir certbot \
+    && /usr/bin/pip3 install --no-cache-dir --upgrade pip \
+    && /usr/bin/pip3 install --no-cache-dir certbot \
     && apk del .build-deps
 
 # Cron

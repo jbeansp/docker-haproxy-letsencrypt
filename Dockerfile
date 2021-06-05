@@ -84,7 +84,6 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         libffi-dev \
         python3 \
         python3-venv \
-        libaugeas0 \
         py3-pip \
         && which pip3 \
         && apk del certbot \

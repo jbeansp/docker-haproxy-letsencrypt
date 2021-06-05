@@ -87,6 +87,7 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
     #&& curl https://sh.rustup.rs -sSf | sh \
     && /usr/bin/pip3 install --no-cache-dir --upgrade pip \
+    && /usr/bin/pip3 install --no-cache-dir requests \
     && /usr/bin/pip3 install --no-cache-dir certbot \
     && apk del .build-deps
 

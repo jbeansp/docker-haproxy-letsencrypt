@@ -45,7 +45,7 @@ USER root
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk update \
-    && apk add --no-cache --virtual .certbot-deps \
+    && apk add --no-cache \
         # py3-pip \
         # py-pip \
         # && pip install --upgrade pip \
@@ -59,11 +59,18 @@ RUN apk update \
         openssl \
         wget \
         ca-certificates \
-        binutils 
-# RUN apk add --no-cache --virtual \
-#         python-dev \
-#         python3-dev \
-#         py-pip \
+        binutils \
+        python3 \
+        #python3-dev \
+        #py-pip \
+        py3-pip \
+        && pip install --upgrade pip
+        
+# RUN apk add --no-cache \
+#         #python-dev \
+#         python3 \
+#         #python3-dev \
+#         #py-pip \
 #         py3-pip \
 #         && pip install --upgrade pip
 
@@ -82,14 +89,13 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         openssl-dev \
         musl-dev \
         libffi-dev \
-        python3 \
+        #python3 \
         #python3-venv \
-        py3-pip \
-        && which pip3 \
+        #py3-pip \
         && apk del certbot \
         #&& python3 -m venv /opt/certbot/ \
-        && pip install --upgrade pip \
-        && pip install requests --upgrade --force-reinstall \
+        #&& pip install --upgrade pip \
+        #&& pip install requests --upgrade --force-reinstall \
         && pip install certbot \
         #&& ln -sf /opt/certbot/bin/certbot /usr/bin/certbot \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \

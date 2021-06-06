@@ -89,6 +89,7 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         && apk del certbot \
         #&& python3 -m venv /opt/certbot/ \
         && pip install --upgrade pip \
+        && pip install requests \
         && pip install certbot \
         #&& ln -sf /opt/certbot/bin/certbot /usr/bin/certbot \
 #    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \

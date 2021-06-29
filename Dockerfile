@@ -64,6 +64,7 @@ RUN apk update \
         #python3-dev \
         #py-pip \
         py3-pip \
+        && ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null \
         && pip install --upgrade pip
         
 # RUN apk add --no-cache \

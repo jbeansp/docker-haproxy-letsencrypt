@@ -10,4 +10,6 @@ echo Activating cron daemon
 crond
 echo Executing: $@
 # docker-entrypoint.sh comes from the haproxy base image
-exec /usr/local/bin/docker-entrypoint.sh "$@"
+# it's been at root dir, and also in /usr/local/bin
+export PATH="${PATH}:/:/usr/local/bin"
+exec docker-entrypoint.sh "$@"

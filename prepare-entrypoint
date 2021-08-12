@@ -3,9 +3,9 @@ set -e
 if [ "$STAGING" == true ]; then
     export STAGING_FLAG="staging = true"
 fi
-expand-certbot-ini.sh
-certonly.sh
-update-crt-list.sh
+expand-certbot-ini
+certonly
+update-crt-list
 echo Activating cron daemon
 crond
 echo Executing: $@

@@ -2,7 +2,7 @@ FROM haproxy:alpine
 #FROM haproxy:1.7-alpine
 LABEL Jon Proton <jon@opscode.space>
 
-ENTRYPOINT ["/prepare-entrypoint.sh"]
+ENTRYPOINT ["/prepare-entrypoint"]
 CMD haproxy -p /var/run/haproxy.pid -- /etc/haproxy/*.cfg
 EXPOSE 80 443
 
@@ -22,9 +22,9 @@ ENV \
     RSA_KEY_SIZE=4096 \
     # Command to fetch certs at container boot.  We use port 80 here because haproxy isn't running yet.
     # for renew, we use port 90 for certbot, because haproxy is bound to port 80, and redirects to port 90
-    CERTONLY="certbot certonly --debug --http-01-port 80 --post-hook /usr/local/bin/update-crt-list.sh" \
+    CERTONLY="certbot certonly --debug --http-01-port 80 --post-hook /usr/local/bin/update-crt-list" \
     # Command to monthly renew certs
-    RENEW="certbot certonly --debug  --http-01-port 90 --post-hook /usr/local/bin/update-crt-list.sh"
+    RENEW="certbot certonly --debug  --http-01-port 90 --post-hook /usr/local/bin/update-crt-list"
 
 # Certbot (officially supported Let's Encrypt client)
 # SEE https://github.com/certbot/certbot/pull/4032
@@ -108,15 +108,15 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
 
 # Cron
 RUN apk add --no-cache dcron
-RUN ln -s /usr/local/bin/renew.sh /etc/periodic/monthly/renew
+RUN ln -s /usr/local/bin/renew /etc/periodic/daily/renew
 
 # Utils
 RUN apk add --no-cache gettext socat
 RUN mkdir -p /var/lib/haproxy && touch /var/lib/haproxy/server-state
 COPY conf/* /etc/haproxy/
-COPY prepare-entrypoint.sh /
+COPY prepare-entrypoint /
 COPY bin/* /usr/local/bin/
-RUN chmod +x /usr/local/bin/*sh && chmod +x /prepare-entrypoint.sh
+RUN chmod +x /usr/local/bin/* && chmod +x /prepare-entrypoint
 
 VOLUME /var/spool/cron/cronstamps /etc/letsencrypt
 

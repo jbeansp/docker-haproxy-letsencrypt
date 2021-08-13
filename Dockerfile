@@ -60,8 +60,9 @@ RUN apk update \
         binutils \
         python3 \
         py3-pip \
-    && ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null \
-    && pip install --upgrade pip
+    && pip install --upgrade pip \
+    && (ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null; exit 0)
+    
         
 # RUN apk add --no-cache \
 #         #python-dev \

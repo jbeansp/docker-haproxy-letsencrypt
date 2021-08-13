@@ -2,7 +2,7 @@ FROM haproxy:alpine
 #FROM haproxy:1.7-alpine
 LABEL Jon Proton <jon@opscode.space>
 
-ENTRYPOINT ["/prepare-entrypoint"]
+ENTRYPOINT ["/prepare-entrypoint.sh"]
 CMD haproxy -p /var/run/haproxy.pid -- /etc/haproxy/*.cfg
 EXPOSE 80 443
 
@@ -95,9 +95,9 @@ RUN ln -s /usr/local/bin/renew /etc/periodic/daily/renew
 RUN apk add --no-cache gettext socat
 RUN mkdir -p /var/lib/haproxy && touch /var/lib/haproxy/server-state
 COPY conf/* /etc/haproxy/
-COPY prepare-entrypoint /
+COPY prepare-entrypoint.sh /
 COPY bin/* /usr/local/bin/
-RUN chmod +x /usr/local/bin/* && chmod +x /prepare-entrypoint
+RUN chmod +x /usr/local/bin/* && chmod +x /prepare-entrypoint.sh
 
 VOLUME /var/spool/cron/cronstamps /etc/letsencrypt
 

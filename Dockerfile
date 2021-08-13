@@ -42,16 +42,14 @@ USER root
 #         && if [ ! -e /usr/bin/pip ]; then ln -s /usr/bin/pip3 /usr/bin/pip ; fi \
 #         && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi 
 #         ##&& pip install --no-cache-dir setuptools_rust
+
+# debug:
+#  docker run -it --entrypoint /bin/sh --user root haproxy:alpine
+
 # to update deps, see cerbot Dockerfile
 # https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
 RUN apk update \
     && apk add --no-cache \
-        # py3-pip \
-        # py-pip \
-        # && pip install --upgrade pip \
-        # && pip3 install --upgrade pip \
-        # && pip3 install --no-cache-dir setuptools_rust \
-        # && 
         dialog \
         augeas-libs \
         libffi \
@@ -61,11 +59,9 @@ RUN apk update \
         ca-certificates \
         binutils \
         python3 \
-        #python3-dev \
-        #py-pip \
         py3-pip \
-        && ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null \
-        && pip install --upgrade pip
+    && ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null \
+    && pip install --upgrade pip
         
 # RUN apk add --no-cache \
 #         #python-dev \
@@ -80,30 +76,14 @@ RUN apk update \
 RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
     && apk update \
     && apk add --no-cache --virtual .build-deps \
-        #python-dev \
         python3-dev \
-        #cargo \
-        #rust \
-        #py3-cryptography \
         gcc \
         linux-headers \
         openssl-dev \
         musl-dev \
         libffi-dev \
-        #python3 \
-        #python3-venv \
-        #py3-pip \
-        && apk del certbot \
-        #&& python3 -m venv /opt/certbot/ \
-        #&& pip install --upgrade pip \
-        #&& pip install requests --upgrade --force-reinstall \
-        && pip install certbot \
-        #&& ln -sf /opt/certbot/bin/certbot /usr/bin/certbot \
-#    && pip install --no-cache-dir --require-hashes -r /usr/src/certbot.txt \
-    #&& curl https://sh.rustup.rs -sSf | sh \
-    #&& /usr/bin/pip3 install --no-cache-dir --upgrade pip \
-    #&& /usr/bin/pip3 install --no-cache-dir requests \
-    #&& /usr/bin/pip3 install --no-cache-dir certbot \
+    && apk del certbot \
+    && pip install certbot \
     && apk del .build-deps
 
 # Cron

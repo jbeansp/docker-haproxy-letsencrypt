@@ -1,6 +1,8 @@
 #!/bin/sh
+exec > /proc/1/fd/1 2>&1
 set -e
 set -x
+whoami
 changed=no
 list=
 txt=/etc/letsencrypt/crt-list.txt
@@ -31,6 +33,7 @@ done
 if [ "$list" != "$(cat $txt)" -o $changed == yes ]; then
     # Update list and reload server
     echo -e "$list" > $txt
+    echo "Found a changed cert, calling reload"
     reload
 else
     printf "No changes detected. In case of error, here's /var/log/letsencrypt/letsencrypt.log\n"

@@ -1,7 +1,9 @@
 #!/bin/sh
 exec > /proc/1/fd/1 2>&1
 set -e
-set -x
+#set -x
+
+echo "update-crt-list"
 whoami
 changed=no
 list=
@@ -11,6 +13,7 @@ echo Updating $txt
 touch $txt
 mkdir -p /etc/letsencrypt/live
 cd /etc/letsencrypt/live
+
 for domain in "$(ls -d */ 2>/dev/null)"; do
     if [ "$domain" = "README" ]; then continue; fi
     cd "$domain"

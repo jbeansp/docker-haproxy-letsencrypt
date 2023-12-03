@@ -37,7 +37,7 @@ if [ "$list" != "$(cat $txt)" -o $changed == yes ]; then
     # Update list and reload server
     echo -e "$list" > $txt
     echo "Found a changed cert, calling reload"
-    /usr/bin/reload
+    /usr/local/bin/reload
 else
     printf "No changes detected. In case of error, here's /var/log/letsencrypt/letsencrypt.log\n"
     cat /var/log/letsencrypt/letsencrypt.log

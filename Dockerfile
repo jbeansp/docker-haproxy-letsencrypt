@@ -1,6 +1,5 @@
 FROM haproxy:alpine
 #FROM haproxy:1.7-alpine
-LABEL Jon Proton <jon@opscode.space>
 
 ENTRYPOINT ["/prepare-entrypoint.sh"]
 CMD haproxy -p /var/run/haproxy.pid -- /etc/haproxy/*.cfg

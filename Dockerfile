@@ -21,9 +21,9 @@ ENV \
     RSA_KEY_SIZE=4096 \
     # Command to fetch certs at container boot.  We use port 80 here because haproxy isn't running yet.
     # for renew, we use port 90 for certbot, because haproxy is bound to port 80, and redirects to port 90
-    CERTONLY="certbot certonly --debug --expand --http-01-port 80 --post-hook /usr/local/bin/update-crt-list" \
+    CERTONLY="certbot certonly --debug --debug-challenges --expand --http-01-port 80 --post-hook /usr/local/bin/update-crt-list" \
     # Command to monthly renew certs
-    RENEW="certbot certonly --debug  --expand --http-01-port 90 --post-hook /usr/local/bin/update-crt-list"
+    RENEW="certbot certonly --debug --debug-challenges --expand --http-01-port 90 --post-hook /usr/local/bin/update-crt-list"
 
 # Certbot (officially supported Let's Encrypt client)
 # SEE https://github.com/certbot/certbot/pull/4032

@@ -46,13 +46,14 @@ USER root
 #  docker run -it --entrypoint /bin/sh --user root haproxy:alpine
 
 # to update deps, see cerbot Dockerfile
-# https://github.com/certbot-docker/certbot-docker/blob/master/core/Dockerfile
+# https://github.com/certbot/certbot/blob/master/tools/docker/Dockerfile
 RUN apk update \
     && apk add --no-cache \
         dialog \
         augeas-libs \
         libffi \
-        libssl1.1 \
+        #libssl1.1 \
+        libssl3 \
         openssl \
         wget \
         ca-certificates \

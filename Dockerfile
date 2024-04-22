@@ -84,6 +84,7 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         musl-dev \
         libffi-dev \
     && apk del certbot \
+    && rm /usr/lib/python*/EXTERNALLY-MANAGED \
     && pip install certbot \
     && apk del .build-deps
 

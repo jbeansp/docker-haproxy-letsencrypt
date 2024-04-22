@@ -60,6 +60,7 @@ RUN apk update \
         binutils \
         python3 \
         py3-pip \
+    && rm /usr/lib/python*/EXTERNALLY-MANAGED \
     && pip install --upgrade pip \
     && (ln -s /usr/bin/pip3 /usr/bin/pip 2>/dev/null; exit 0)
     
@@ -84,7 +85,6 @@ RUN export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
         musl-dev \
         libffi-dev \
     && apk del certbot \
-    && rm /usr/lib/python*/EXTERNALLY-MANAGED \
     && pip install certbot \
     && apk del .build-deps
 
